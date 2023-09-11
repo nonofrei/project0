@@ -13,7 +13,7 @@ public class ConnectionUtil {
             System.out.println("problem occurred locating driver");
         }
 
-        String url = "jdbc:postgresql://postgres.ckoukbxwfine.us-west-2.rds.amazonaws.com:5432/postgres?currentSchema=project0Schema";
+        String url = "jdbc:postgresql://postgres.ckoukbxwfine.us-west-2.rds.amazonaws.com:5432/postgres?currentSchema=project0";
         String username = "postgres";
         String password = "password";
 
