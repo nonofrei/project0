@@ -12,9 +12,9 @@ public class AccountDAO {
 
         try(Connection conn = ConnectionUtil.getConnection()){
 
-            String sql = "SELECT * FROM account WHERE user_id_fk = ?";
+            String sql = "SELECT * FROM accounts WHERE user_id_fk = ?";
 
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, user_id);
 
             ResultSet rs = ps.executeQuery();

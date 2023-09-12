@@ -13,7 +13,7 @@ public class AccountController {
 
     public Handler getAllAccountsByUserIdHandler = (ctx) -> {
 
-        int user_id = ctx.pathParam("user_id");
+        int user_id = Integer.parseInt(ctx.pathParam("user_id"));
 
         ArrayList<Account> accounts = as.getAllAccountsByUserId(user_id);
 
@@ -21,14 +21,14 @@ public class AccountController {
 
         String JSONAccounts = gson.toJson(accounts);
 
-        if(accounts != null){
+        if(!accounts.isEmpty()){
             ctx.status(200);
             ctx.result(JSONAccounts);
         } else{
-            ctx.status(406);
-            ctx.result("Invalid ID");
+            ctx.status(404);
+            ctx.result("No Account Found");
         }
 
-    }
+    };
 
 }
