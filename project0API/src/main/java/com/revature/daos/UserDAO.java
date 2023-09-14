@@ -3,7 +3,6 @@ package com.revature.daos;
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 
