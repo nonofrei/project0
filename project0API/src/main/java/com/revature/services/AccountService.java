@@ -10,9 +10,7 @@ public class AccountService {
     AccountDAO aDAO = new AccountDAO();
 
     public ArrayList<Account> getAllAccountsByUserId(int user_id){
-
         return aDAO.getAllAccountsByUserId(user_id);
-
     }
 
     public Account delete_account(int account_id) {
@@ -29,8 +27,11 @@ public class AccountService {
         if (account.getUser_id_fk() < 0) {
             throw new IllegalArgumentException("Must connect account to a user");
         }
-
         return aDAO.insertAccount(account);
     }
 
+    public int getAccountBalanceByAccountId(int account_id){
+        return aDAO.getAccountBalanceByAccountId(account_id);
+    }
+  
 }

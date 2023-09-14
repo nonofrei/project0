@@ -22,9 +22,17 @@ public class Driver {
         AccountController ac = new AccountController();
         UserController userController = new UserController();
 
+        app.get("/user/{user_id}", userController.getUsersByIdHandler);
+        app.get("/users", userController.getAllUsersHandler);
         app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
+        app.get("/balance/{account_id}", ac.getAccountBalanceByAccountIdHandler);
+        
         app.post("/user", userController.insertUserHandler);
-        app.delete("/accounts/{account_id}", ac.deleteAccountByAccountId);
         app.post("/accounts", ac.insertAccount);
+        app.post("/user", userController.insertUserHandler);
+      
+        app.patch("/user/{user_id}", userController.updateUserNameByUserIdHandler);
+      
+        app.delete("/accounts/{account_id}", ac.deleteAccountByAccountId);
     }
 }
