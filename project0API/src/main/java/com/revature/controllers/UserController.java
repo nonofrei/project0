@@ -26,6 +26,23 @@ public class UserController {
         }
     };
 
+    public Handler updateUserNameByUserIdHandler = (ctx) -> {
+        try {
+            String body = ctx.body();
+            Gson gson = new Gson();
+            int user_id = Integer.parseInt(ctx.pathParam("user_id"));
+
+            User updatedUser = gson.fromJson(body, User.class);
+            User returnedUser = userService.updateUserNameByUserId(user_id, updatedUser.getUser_first_name(), updatedUser.getUser_last_name());
+            ctx.status(200);
+            String JSONUser = gson.toJson(returnedUser);
+            ctx.result(JSONUser);
+        } catch (IllegalArgumentException e) {
+            ctx.status(406);
+            ctx.result(e.getMessage());
+        }
+    };
+  
     public Handler getAllUsersHandler = (ctx) -> {
         try {
             ArrayList<User> users = userService.getAllUsers();

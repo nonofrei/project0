@@ -21,6 +21,11 @@ public class UserService {
         return userDAO.insertUser(user);
     }
 
+
+    public User updateUserNameByUserId(int user_id, String user_first_name, String user_last_name){
+        return userDAO.updateUserNameByUserId(user_id, user_first_name, user_last_name);
+    }
+
     public ArrayList<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
@@ -28,6 +33,4 @@ public class UserService {
     public User getUserById(int user_id) {
         return userDAO.getUserById(user_id);
     }
-
-
 }
