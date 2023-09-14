@@ -24,6 +24,8 @@ public class Driver {
 
         app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
         app.post("/user", userController.insertUserHandler);
+        app.get("/user/{user_id}", userController.getUsersByIdHandler);
+        app.get("/users", userController.getAllUsersHandler);
 
     }
 }

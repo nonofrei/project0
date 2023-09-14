@@ -3,6 +3,8 @@ package com.revature.services;
 import com.revature.daos.UserDAO;
 import com.revature.models.User;
 
+import java.util.ArrayList;
+
 public class UserService {
 
     UserDAO userDAO = new UserDAO();
@@ -18,5 +20,14 @@ public class UserService {
         }
         return userDAO.insertUser(user);
     }
+
+    public ArrayList<User> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
+
+    public User getUserById(int user_id) {
+        return userDAO.getUserById(user_id);
+    }
+
 
 }
