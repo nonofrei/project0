@@ -15,4 +15,8 @@ public class AccountService {
 
     }
 
+    public Account delete_account(int account_id) {
+        return aDAO.deleteAccountByUserId(account_id);
+    }
+
 }

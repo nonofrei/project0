@@ -31,4 +31,22 @@ public class AccountController {
 
     };
 
+    public Handler deleteAccountByAccountId = (ctx) -> {
+
+        int account_id = Integer.parseInt(ctx.pathParam("account_id"));
+
+        if (as.delete_account(account_id) == null) {
+            ctx.status(200);
+            ctx.result("DELETED ACCOUNT: " + account_id);
+        } else {
+            ctx.status(406);
+            ctx.result("Account was not deleted :(");
+
+        }
+
+
+
+
+    };
+
 }

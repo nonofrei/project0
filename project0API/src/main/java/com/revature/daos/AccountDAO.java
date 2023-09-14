@@ -45,4 +45,24 @@ public class AccountDAO {
 
     }
 
+    public Account deleteAccountByUserId(int account_id){
+
+        try(Connection conn = ConnectionUtil.getConnection()){
+
+            String sql = "DELETE FROM accounts WHERE account_id = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, account_id);
+
+            ps.executeUpdate();
+
+        } catch(SQLException e){
+            System.out.println("DELETE ACCOUNT FAILED");
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
 }
