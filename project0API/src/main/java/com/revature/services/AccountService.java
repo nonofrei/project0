@@ -15,4 +15,9 @@ public class AccountService {
 
     }
 
+    public int getAccountBalanceByAccountId(int account_id){
+
+        return aDAO.getAccountBalanceByAccountId(account_id);
+
+    }
 }

@@ -31,4 +31,24 @@ public class AccountController {
 
     };
 
+    public Handler getAccountBalanceByAccountIdHandler = (ctx) -> {
+
+        int account_id = Integer.parseInt(ctx.pathParam("account_id"));
+
+        int balance = as.getAccountBalanceByAccountId(account_id);
+
+        Gson gson = new Gson();
+
+        String JSONBalance = gson.toJson(balance);
+
+        if(balance != -999999){
+            ctx.status(200);
+            ctx.result(JSONBalance);
+        } else{
+            ctx.status(404);
+            ctx.result("No Account Found");
+        }
+
+    };
+
 }
