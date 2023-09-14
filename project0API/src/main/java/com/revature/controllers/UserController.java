@@ -24,4 +24,19 @@ public class UserController {
         }
     };
 
+    public Handler updateUserNameByUserIdHandler = (ctx) -> {
+        String body = ctx.body();
+        Gson gson = new Gson();
+//        User newUser = gson.fromJson(body, User.class);
+        ctx.result(body);
+
+        try {
+            ctx.status(201);
+//          ctx.result(JSONUser);
+        } catch (IllegalArgumentException e) {
+            ctx.status(406);
+            ctx.result(e.getMessage());
+        }
+    };
+
 }

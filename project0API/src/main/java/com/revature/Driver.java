@@ -24,6 +24,7 @@ public class Driver {
 
         app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
         app.post("/user", userController.insertUserHandler);
+        app.patch("/user/{1}", userController.updateUserNameByUserIdHandler);
 
     }
 }
