@@ -81,4 +81,42 @@ public class AccountController {
 
     };
 
+    public Handler depositByAccountIdHandler = (ctx) -> {
+        int account_id = Integer.parseInt(ctx.pathParam("account_id"));
+        int amount = Integer.parseInt(ctx.body());
+        try{
+            int newBalance = as.depositByAccountId(account_id, amount);
+            ctx.status(200);
+            ctx.result("New Account Balance: " + newBalance);
+        } catch (IllegalArgumentException e) {
+            ctx.status(406);
+            ctx.result(e.getMessage());
+        }
+    };
+
+    public Handler withdrawByAccountIdHandler = (ctx) -> {
+        int account_id = Integer.parseInt(ctx.pathParam("account_id"));
+        int amount = Integer.parseInt(ctx.body());
+        try{
+            int newBalance = as.withdrawByAccountId(account_id, amount);
+            ctx.status(200);
+            ctx.result("New Account Balance: " + newBalance);
+        } catch (IllegalArgumentException e) {
+            ctx.status(406);
+            ctx.result(e.getMessage());
+        }
+    };
+
+    public Handler updateAccountTitleByAccountIdHandler = (ctx) -> {
+        int account_id = Integer.parseInt(ctx.pathParam("account_id"));
+        String title = ctx.body();
+        try{
+            as.updateAccountTitleByAccountId(account_id, title);
+            ctx.status(200);
+            ctx.result("New Account Title: " + title);
+        } catch (IllegalArgumentException e) {
+            ctx.status(406);
+            ctx.result(e.getMessage());
+        }
+    };
 }

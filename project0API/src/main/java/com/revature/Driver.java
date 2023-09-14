@@ -26,7 +26,9 @@ public class Driver {
         app.get("/users", userController.getAllUsersHandler);
         app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
         app.get("/balance/{account_id}", ac.getAccountBalanceByAccountIdHandler);
-        
+        app.patch("/account/{account_id}/deposit", ac.depositByAccountIdHandler);
+        app.patch("/account/{account_id}/withdraw", ac.withdrawByAccountIdHandler);
+        app.patch("/account/{account_id}", ac.updateAccountTitleByAccountIdHandler);
         app.post("/user", userController.insertUserHandler);
         app.post("/accounts", ac.insertAccount);
       

@@ -33,5 +33,38 @@ public class AccountService {
     public int getAccountBalanceByAccountId(int account_id){
         return aDAO.getAccountBalanceByAccountId(account_id);
     }
-  
+
+    public int depositByAccountId(int account_id, int amount) throws IllegalArgumentException{
+        int oldBalance = aDAO.getAccountBalanceByAccountId(account_id);
+        if(amount < 0){
+            throw new IllegalArgumentException("Can't deposit negative amount of money!");
+        }
+        if(oldBalance == -999999){
+            throw new IllegalArgumentException("Account doesn't exist!");
+        }
+        int newBalance = oldBalance + amount;
+        return aDAO.updateAccountBalanceByAccountId(account_id, newBalance);
+    }
+
+    public int withdrawByAccountId(int account_id, int amount) throws IllegalArgumentException{
+        int oldBalance = aDAO.getAccountBalanceByAccountId(account_id);
+        if(amount < 0){
+            throw new IllegalArgumentException("Can't withdraw negative amount of money!");
+        }
+        if(oldBalance == -999999){
+            throw new IllegalArgumentException("Account doesn't exist!");
+        }
+        if(amount > oldBalance){
+            throw new IllegalArgumentException("Withdraw amount can't exceed account balance!");
+        }
+        int newBalance = oldBalance - amount;
+        return aDAO.updateAccountBalanceByAccountId(account_id, newBalance);
+    }
+
+    public String updateAccountTitleByAccountId(int account_id, String newTitle) throws IllegalArgumentException{
+        if(newTitle.isEmpty()){
+            throw new IllegalArgumentException("New title can't be empty!");
+        }
+        return aDAO.updateAccountTitleByAccountId(account_id, newTitle);
+    }
 }
