@@ -38,6 +38,7 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
 
     public ArrayList<User> getAllUsers() {
         try (Connection conn = ConnectionUtil.getConnection()) {
