@@ -29,7 +29,6 @@ public class Driver {
         
         app.post("/user", userController.insertUserHandler);
         app.post("/accounts", ac.insertAccount);
-        app.post("/user", userController.insertUserHandler);
       
         app.patch("/user/{user_id}", userController.updateUserNameByUserIdHandler);
       

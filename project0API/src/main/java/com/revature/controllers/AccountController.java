@@ -21,17 +21,17 @@ public class AccountController {
 
         String JSONAccounts = gson.toJson(accounts);
 
-        if(!accounts.isEmpty()){
+        if (!accounts.isEmpty()) {
             ctx.status(200);
             ctx.result(JSONAccounts);
-        } else{
+        } else {
             ctx.status(404);
             ctx.result("No Account Found");
         }
 
     };
 
-  
+
     public Handler deleteAccountByAccountId = (ctx) -> {
 
         int account_id = Integer.parseInt(ctx.pathParam("account_id"));
@@ -58,8 +58,9 @@ public class AccountController {
         } catch (IllegalArgumentException e) {
             ctx.status(406);
             ctx.result(e.getMessage());
+        }
     };
-      
+
     public Handler getAccountBalanceByAccountIdHandler = (ctx) -> {
 
         int account_id = Integer.parseInt(ctx.pathParam("account_id"));
@@ -70,10 +71,10 @@ public class AccountController {
 
         String JSONBalance = gson.toJson(balance);
 
-        if(balance != -999999){
+        if (balance != -999999) {
             ctx.status(200);
             ctx.result(JSONBalance);
-        } else{
+        } else {
             ctx.status(404);
             ctx.result("No Account Found");
         }
