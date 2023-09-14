@@ -43,9 +43,22 @@ public class AccountController {
             ctx.result("Account was not deleted :(");
 
         }
+    };
 
+    public Handler insertAccount = (ctx) -> {
+        String body = ctx.body();
+        Gson gson = new Gson();
+        Account newAccount = gson.fromJson(body, Account.class);
 
-
+        try {
+            Account returnedAcc = as.insert_new_account(newAccount);
+            String JSONAccount = gson.toJson(returnedAcc);
+            ctx.status(201);
+            ctx.result(JSONAccount);
+        } catch (IllegalArgumentException e) {
+            ctx.status(406);
+            ctx.result(e.getMessage());
+        }
 
     };
 

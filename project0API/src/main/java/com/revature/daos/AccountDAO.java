@@ -45,7 +45,7 @@ public class AccountDAO {
 
     }
 
-    public Account deleteAccountByUserId(int account_id){
+    public Account deleteAccountByAccountId(int account_id){
 
         try(Connection conn = ConnectionUtil.getConnection()){
 
@@ -62,6 +62,27 @@ public class AccountDAO {
         }
 
         return null;
+
+    }
+
+    public Account insertAccount(Account account){
+        try(Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "INSERT INTO accounts (account_title, account_balance, user_id_fk) VALUES (?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, account.getAccount_title());
+            ps.setInt(2, account.getAccount_balance());
+            ps.setInt(3, account.getUser_id_fk());
+
+            ps.executeUpdate();
+            return account;
+
+
+        } catch(SQLException e) {
+            System.out.println("INSERT EMPLOYEE FAILED");
+            e.printStackTrace();
+        }
+        return null;
+
 
     }
 

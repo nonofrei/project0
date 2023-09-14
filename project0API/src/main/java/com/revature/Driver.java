@@ -25,6 +25,6 @@ public class Driver {
         app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
         app.post("/user", userController.insertUserHandler);
         app.delete("/accounts/{account_id}", ac.deleteAccountByAccountId);
-
+        app.post("/accounts", ac.insertAccount);
     }
 }
