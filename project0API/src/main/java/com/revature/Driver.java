@@ -1,6 +1,7 @@
 package com.revature;
 
 import com.revature.controllers.AccountController;
+import com.revature.controllers.UserController;
 import com.revature.utils.ConnectionUtil;
 import io.javalin.Javalin;
 
@@ -19,8 +20,10 @@ public class Driver {
         Javalin app = Javalin.create().start(8080);
 
         AccountController ac = new AccountController();
+        UserController userController = new UserController();
 
         app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
+        app.post("/user", userController.insertUserHandler);
 
     }
 }
