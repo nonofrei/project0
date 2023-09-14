@@ -8,8 +8,10 @@ Project Zero is a Banking Application using JBDC, Javalin, and AWS RDS. It allow
 ```SQL
 create table users(
 	user_id serial primary key,
-	user_first_name text not null,
-	user_last_name text not null
+	user_first_name TEXT NOT NULL,
+	user_last_name TEXT NOT NULL,
+	user_username TEXT unique NOT NULL,
+	user_password TEXT NOT NULL
 );
 
 create table accounts(
@@ -23,14 +25,17 @@ create table accounts(
 ```SQL
 INSERT INTO users(user_first_name, user_last_name)
 VALUES
-('Bobby', 'McBobby'),
-('Hermione', 'Granger'),
-('Ron', 'Weasley'),
-('Luna', 'Lovegood'),
-('Harry', 'Potter'),
-('Sam', 'Willson'),
-('Duncan', 'Idaho'),
-('Paul', 'Atreides');
+INSERT INTO users(user_first_name, user_last_name, user_username, user_password)
+VALUES
+('Bobby', 'McBobby', 'bb', '12345'),
+('Hermione', 'Granger','username', 'password'),
+('Ron', 'Weasley','123', 'abc'),
+('Luna', 'Lovegood','765', '987654321'),
+('Harry', 'Potter', '12', 'no'),
+('Sam', 'Willson', 'a','none'),
+('Duncan', 'Idaho', 'b','goodpassword'),
+('Paul', 'Atreides', 'c','1w1w1');
+
 
 INSERT INTO accounts(account_title, account_balance, user_id_fk)
 VALUES
