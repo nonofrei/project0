@@ -45,4 +45,28 @@ public class AccountDAO {
 
     }
 
+    public int getAccountBalanceByAccountId(int account_id){
+
+        try(Connection conn = ConnectionUtil.getConnection()){
+
+            String sql = "SELECT account_balance FROM accounts WHERE account_id = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, account_id);
+
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+
+            return rs.getInt(1);
+
+        } catch(SQLException e){
+            System.out.println("GET ACCOUNT FAILED");
+            e.printStackTrace();
+        }
+
+        return -999999;
+
+    }
+
 }
