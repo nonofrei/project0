@@ -89,4 +89,33 @@ public class AccountDAO {
         return null;
     }
 
+    public int updateAccountBalanceByAccountId(int account_id, int newBalance){
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "UPDATE accounts SET account_balance = ? WHERE account_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, newBalance);
+            ps.setInt(2, account_id);
+            ps.executeUpdate();
+            return newBalance;
+        } catch(SQLException e){
+            System.out.println("UPDATE BALANCE FAILED");
+            e.printStackTrace();
+        }
+        return -999999;
+    }
+
+    public String updateAccountTitleByAccountId(int account_id, String newTitle){
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "UPDATE accounts SET account_title = ? WHERE account_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newTitle);
+            ps.setInt(2, account_id);
+            ps.executeQuery();
+            return newTitle;
+        } catch(SQLException e){
+            System.out.println("UPDATE BALANCE FAILED");
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
