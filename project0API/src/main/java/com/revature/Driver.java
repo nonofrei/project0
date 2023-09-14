@@ -23,8 +23,10 @@ public class Driver {
         UserController userController = new UserController();
 
         app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
+        app.get("/balance/{account_id}", ac.getAccountBalanceByAccountIdHandler);
         app.post("/user", userController.insertUserHandler);
+        app.get("/user/{user_id}", userController.getUsersByIdHandler);
         app.patch("/user/{user_id}", userController.updateUserNameByUserIdHandler);
-
+        app.get("/users", userController.getAllUsersHandler);
     }
 }
