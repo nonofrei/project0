@@ -1,6 +1,7 @@
 package com.revature;
 
 import com.revature.controllers.AccountController;
+import com.revature.controllers.AuthController;
 import com.revature.controllers.UserController;
 import com.revature.utils.ConnectionUtil;
 import io.javalin.Javalin;
@@ -19,21 +20,21 @@ public class Driver {
 
         Javalin app = Javalin.create().start(8080);
 
-        AccountController ac = new AccountController();
+        AccountController accountController = new AccountController();
         UserController userController = new UserController();
+        AuthController authController = new AuthController();
 
         app.get("/user/{user_id}", userController.getUsersByIdHandler);
         app.get("/users", userController.getAllUsersHandler);
-        app.get("/accounts/{user_id}", ac.getAllAccountsByUserIdHandler);
-        app.get("/balance/{account_id}", ac.getAccountBalanceByAccountIdHandler);
-        app.patch("/account/{account_id}/deposit", ac.depositByAccountIdHandler);
-        app.patch("/account/{account_id}/withdraw", ac.withdrawByAccountIdHandler);
-        app.patch("/account/{account_id}", ac.updateAccountTitleByAccountIdHandler);
+        app.get("/accounts/{user_id}", accountController.getAllAccountsByUserIdHandler);
+        app.get("/balance/{account_id}", accountController.getAccountBalanceByAccountIdHandler);
+        app.patch("/account/{account_id}/deposit", accountController.depositByAccountIdHandler);
+        app.patch("/account/{account_id}/withdraw", accountController.withdrawByAccountIdHandler);
+        app.patch("/account/{account_id}", accountController.updateAccountTitleByAccountIdHandler);
         app.post("/user", userController.insertUserHandler);
-        app.post("/accounts", ac.insertAccount);
-      
+        app.post("/accounts", accountController.insertAccount);
         app.patch("/user/{user_id}", userController.updateUserNameByUserIdHandler);
-      
-        app.delete("/accounts/{account_id}", ac.deleteAccountByAccountId);
+        app.delete("/accounts/{account_id}", accountController.deleteAccountByAccountId);
+        app.post("/auth", authController.loginHandler);
     }
 }

@@ -10,10 +10,13 @@ public class UserDAO {
 
     public User insertUser(User user) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "INSERT INTO users (user_first_name, user_last_name) VALUES(?, ?)";
+            String sql = "INSERT INTO users (user_first_name, user_last_name, user_username, user_password)"
+                    + " VALUES(?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUser_first_name());
             ps.setString(2, user.getUser_last_name());
+            ps.setString(3, user.getUser_username());
+            ps.setString(4, user.getUser_password());
             ps.executeUpdate();
             return user;
         } catch (SQLException e) {
