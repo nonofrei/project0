@@ -10,12 +10,14 @@ public class UserDAO {
 
     public User insertUser(User user) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "INSERT INTO users (user_first_name, user_last_name) VALUES(?, ?)";
+            String sql = "INSERT INTO users (user_first_name, user_last_name, user_username, user_password)"
+                    + " VALUES(?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUser_first_name());
             ps.setString(2, user.getUser_last_name());
+            ps.setString(3, user.getUser_username());
+            ps.setString(4, user.getUser_password());
             ps.executeUpdate();
-            return user;
         } catch (SQLException e) {
             System.out.println("ERROR INSERT USER");
             e.printStackTrace();
@@ -23,17 +25,16 @@ public class UserDAO {
         return null;
     }
 
-
-    public User updateUserNameByUserId(int user_id, String user_first_name, String user_last_name){
-        try(Connection conn = ConnectionUtil.getConnection()){
+    public User updateUserNameByUserId(int user_id, String user_first_name, String user_last_name) {
+        try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "UPDATE users SET user_first_name = ?, user_last_name = ? WHERE user_id  = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, user_first_name);
             ps.setString(2, user_last_name);
-            ps.setInt(3,user_id);
+            ps.setInt(3, user_id);
             ps.executeUpdate();
             return new User(user_id, user_first_name, user_last_name);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("ERROR UPDATING USER");
             e.printStackTrace();
         }
@@ -50,7 +51,8 @@ public class UserDAO {
                 User user = new User(
                         rs.getInt("user_id"),
                         rs.getString("user_first_name"),
-                        rs.getString("user_last_name")
+                        rs.getString("user_last_name"),
+                        rs.getString("user_username")
                 );
                 users.add(user);
             }
@@ -72,7 +74,8 @@ public class UserDAO {
                 return new User(
                         user_id,
                         rs.getString("user_first_name"),
-                        rs.getString("user_last_name")
+                        rs.getString("user_last_name"),
+                        rs.getString("user_username")
                 );
             }
         } catch (SQLException e) {
