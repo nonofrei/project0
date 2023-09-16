@@ -58,18 +58,15 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
         </dependency>
-
+  
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Configure the JaCoCo Maven plugin for code coverage -->
-            <!-- Run mvn test (can be found in the maven tab on the right) -->
-            <!-- Then dig into target/site/jacoco/index.html. open index.html in intellij-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version> <!-- Use the latest version -->
+                <version>0.8.7</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
