@@ -31,13 +31,6 @@ public class User {
         this.user_last_name = user_last_name;
     }
 
-    public User(String user_first_name, String user_last_name, String user_username, String user_password) {
-        this.user_first_name = user_first_name;
-        this.user_last_name = user_last_name;
-        this.user_username = user_username;
-        this.user_password = user_password;
-    }
-
     public User(int user_id, String user_first_name, String user_last_name) {
         this.user_id = user_id;
         this.user_first_name = user_first_name;
