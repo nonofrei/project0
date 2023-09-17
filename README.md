@@ -23,8 +23,6 @@ create table accounts(
 ```
 ### Mockdata in database
 ```SQL
-INSERT INTO users(user_first_name, user_last_name)
-VALUES
 INSERT INTO users(user_first_name, user_last_name, user_username, user_password)
 VALUES
 ('Bobby', 'McBobby', 'bb', '12345'),
