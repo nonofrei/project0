@@ -28,13 +28,16 @@ public class Driver {
         app.get("/users", userController.getAllUsersHandler);
         app.get("/accounts/{user_id}", accountController.getAllAccountsByUserIdHandler);
         app.get("/balance/{account_id}", accountController.getAccountBalanceByAccountIdHandler);
+
         app.patch("/account/{account_id}/deposit", accountController.depositByAccountIdHandler);
         app.patch("/account/{account_id}/withdraw", accountController.withdrawByAccountIdHandler);
         app.patch("/account/{account_id}", accountController.updateAccountTitleByAccountIdHandler);
+        app.patch("/user/{user_id}", userController.updateUserNameByUserIdHandler);
+
         app.post("/user", userController.insertUserHandler);
         app.post("/accounts", accountController.insertAccount);
-        app.patch("/user/{user_id}", userController.updateUserNameByUserIdHandler);
-        app.delete("/accounts/{account_id}", accountController.deleteAccountByAccountId);
         app.post("/auth", authController.loginHandler);
+
+        app.delete("/accounts/{account_id}", accountController.deleteAccountByAccountId);
     }
 }
