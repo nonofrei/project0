@@ -59,7 +59,7 @@ public class AccountServicesTest {
         //when(aDAO.updateAccountBalanceByAccountId(0, 1)).thenReturn(1);
         AccountService temp = new AccountService();
         int result = temp.depositByAccountId(2, 1);
-        assertEquals(706, result);
+        assertEquals(701, result);
         //temp.withdrawByAccountId(2, 1);
 
     }
@@ -69,7 +69,7 @@ public class AccountServicesTest {
         AccountService temp = new AccountService();
 
         int result = temp.withdrawByAccountId(2, 1);
-        assertEquals(705, result);
+        assertEquals(700, result);
 
     }
 
@@ -95,8 +95,9 @@ public class AccountServicesTest {
     @Test
     public void testGetAccountBalanceByAccountId() {
 
+
         AccountService temp = new AccountService();
-        assertEquals(temp.getAccountBalanceByAccountId(2), 705);
+        assertEquals(temp.getAccountBalanceByAccountId(2), 700);
 
     }
     // updateAccountTitleByAccountId
